@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WORKS - Raku Watanabe</title>
+
+<style>
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica", sans-serif;
+  background: #fff;
+  color: #000;
+  overflow-x: hidden;
+}
+
+/* 左上ロゴ */
+.logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  z-index: 500;
+  color: #000;
+  text-decoration: none;
+}
+
+/* Sort ボタン */
+.sort-menu-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #000;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 900;
+  user-select: none;
+}
+
+/* Sort メニュー本体 */
+.sort-menu {
+  position: fixed;
+  top: 65px;
+  right: 20px;
+  background: #fff;
+  border: 1px solid #000;
+  border-radius: 8px;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 901;
+}
+
+.sort-menu div {
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  border-bottom: 1px solid #ddd;
+}
+.sort-menu div:last-child { border-bottom: none; }
+.sort-menu div:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* WORK ITEM（丸） */
+.work-item {
+  position: absolute;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+}
+
+.work-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.3s ease, transform 0.4s ease;
+}
+
+.work-item:hover img {
+  filter: brightness(0.4);
+  transform: scale(1.1);
+}
+
+/* ----- 作品名：中央表示＆縮小対応 ----- */
+.work-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  line-height: 1.25em;
+}
+
+.work-title span,
+.work-title dt {
+  display: block;
+}
+
+.work-item:hover .work-title {
+  opacity: 1;
+}
+
+/* Wrapper（高さ調整用） */
+#pageWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 80px; /* ← 上余白を縮小 */
+}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="logo">Raku Watanabe</a>
+
+<div class="sort-menu-button">Sort</div>
+
+<div class="sort-menu">
+  <div data-sort="asc">古い順</div>
+  <div data-sort="desc">新しい順</div>
+  <div data-sort="random">ランダム</div>
+</div>
+
+<div id="pageWrapper">
+
+  <!-- ここから作品リスト（あなたのまま） -->
+  <a class="work-item" href="works/work1.html" data-year="2023.3">
+    <img src="img1.jpg">
+    <div class="work-title">
+      <span class="jp">いきものとして</span>
+      <dt>As a Living Being</dt>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work2.html" data-year="2024.2">
+    <img src="img2.jpg">
+    <div class="work-title">
+      <span class="jp">街をやわらかくする</span>
+      <dt>Softing the City</dt>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work3.html" data-year="2025">
+    <img src="img3.jpg">
+    <div class="work-title">
+      <span class="jp">ゆらめく応え</span>
+      <dt>Wavering Reaction</dt>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work4.html" data-year="2023.5">
+    <img src="img4.jpg">
+    <div class="work-title">
+      <span class="jp">殻字プロジェクト</span>
+      <dt>Hollow-Glyph Project</dt>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work5.html" data-year="2023.9">
+    <img src="img5.jpg">
+    <div class="work-title">
+      <span class="jp">行為の彫刻</span>
+      <dt>Sculoting the Act</dt>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work6.html" data-year="2019">
+    <img src="img6.jpg">
+    <div class="work-title">
+      <span class="jp">parallel world</span>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work7.html" data-year="2025">
+    <img src="img7.jpg">
+    <div class="work-title">
+      <span class="jp">演じる会話</span>
+      <dt>Performed Dialogue</dt>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work8.html" data-year="2025">
+    <img src="img8.jpg">
+    <div class="work-title">
+      <span class="jp">数千万年を装う</span>
+      <dt>Pretending Tens of Millions of Years</dt>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work9.html" data-year="2024">
+    <img src="img9.jpg">
+    <div class="work-title small-title">
+      <span class="jp">作為的シンクロニシティ</span>
+      <dt>Contrived Synchronicity</dt>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work10.html" data-year="2024">
+    <img src="img10.jpg">
+    <div class="work-title">
+      <span class="jp">人生の擬似体験</span>
+      <dt>Simulated Life Experience</dt>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work11.html" data-year="2023.1">
+    <img src="img11.jpg">
+    <div class="work-title">
+      <span class="jp">依存の客観視</span>
+      <dt>Objectifying Dependence</dt>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work12.html" data-year="2023.2">
+    <img src="img12.jpg">
+    <div class="work-title">
+      <span class="jp">LET OUT!</span>
+    </div>
+  </a>
+
+  <a class="work-item" href="works/work13.html" data-year="2023.8">
+    <img src="img13.jpg">
+    <div class="work-title">
+      <span class="jp">ゆめ、うつつ、廻る。</span>
+      <dt>Dream, Reality, Turning.</dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work14.html" data-year="2024">
+    <img src="img14.jpg">
+    <div class="work-title">
+      <span class="jp">ポッキー（貫通）</span>
+      <dt>Pocky(penetration)</dt>
+    </div>
+  </a>
+   <a class="work-item" href="works/work15.html" data-year="2022.1">
+    <img src="img15.jpg">
+    <div class="work-title">
+      <span class="jp">再創世</span>
+      <dt>Re-Genesis</dt>
+    </div>
+  </a>
+   <a class="work-item" href="works/work16.html" data-year="2023.7">
+    <img src="img16.jpg">
+    <div class="work-title">
+      <span class="jp">自分を他人に話す</span>
+      <dt>To talk abouut oneself to Others</dt>
+    </div>
+  </a>
+   <a class="work-item" href="works/work17.html" data-year="2024.1">
+    <img src="img17.jpg">
+    <div class="work-title">
+      <span class="jp">「必然」の片鱗を</span>
+      <dt>A Glimpse of the "Inevitable"</dt>
+    </div>
+  </a>
+   <a class="work-item" href="works/work18.html" data-year="2022">
+    <img src="img18.jpg">
+    <div class="work-title">
+      <span class="jp">自画像</span>
+      <dt>Self-Portrait</dt>
+    </div>
+  </a>
+   <a class="work-item" href="works/work19.html" data-year="2024">
+    <img src="img19.jpg">
+    <div class="work-title">
+      <span class="jp">Mr.</span>
+      <dt></dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work20.html" data-year="2024">
+    <img src="img20.jpg">
+    <div class="work-title">
+      <span class="jp">私を整理して、次へ</span>
+      <dt>Klesha Drawing</dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work21.html" data-year="2021.1">
+    <img src="img21.jpg">
+    <div class="work-title">
+      <span class="jp">Singularity</span>
+      <dt></dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work22.html" data-year="2023">
+    <img src="img22.jpg">
+    <div class="work-title">
+      <span class="jp">巨大板チョコ</span>
+      <dt>Giant Chocolate</dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work23.html" data-year="2024">
+    <img src="img23.jpg">
+    <div class="work-title">
+      <span class="jp">気配コミュニティ</span>
+      <dt>Whisper Community</dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work24.html" data-year="2021">
+    <img src="img24.jpg">
+    <div class="work-title">
+      <span class="jp">天下御麺</span>
+      <dt>Noodles</dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work25.html" data-year="2023.4">
+    <img src="img25.jpg">
+    <div class="work-title">
+      <span class="jp">無題（キャベツ頭）</span>
+      <dt>Untitled(Cabbage Head)</dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work26.html" data-year="2023.6">
+    <img src="img26.jpg">
+    <div class="work-title">
+      <span class="jp">世界と接する</span>
+      <dt>Point of Contact with the World</dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work27.html" data-year="2025">
+    <img src="img27.jpg">
+    <div class="work-title">
+      <span class="jp">競技カルタ選手権大会</span>
+      <dt>Competitive Karuta Championship Tournament</dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work28.html" data-year="2025">
+    <img src="img28.jpg">
+    <div class="work-title">
+      <span class="jp">英語の練習</span>
+      <dt>English Practice</dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work29.html" data-year="2024">
+    <img src="img29.jpg">
+    <div class="work-title">
+      <span class="jp">アンパンマンパンマン</span>
+      <dt>Anpanmanpanman</dt>
+    </div>
+  </a>
+  <a class="work-item" href="works/work30.html" data-year="2024">
+    <img src="img30.jpg">
+    <div class="work-title">
+      <span class="jp">ピカソ</span>
+      <dt>Picasso</dt>
+    </div>
+  </a>
+
+</div>
+
+
+<script>
+const wrapper = document.getElementById("pageWrapper");
+const items = Array.from(document.querySelectorAll(".work-item"));
+const gap = 30;
+
+/* 丸のサイズを画面幅から計算 */
+function getItemSize() {
+  const w = window.innerWidth;
+  if (w >= 1300) return 260;
+  if (w >= 1000) return 230;
+  if (w >= 700)  return 200;
+  if (w >= 500)  return 160;
+  return 130;
+}
+
+/* ★ タイトルの縮小処理 ★ */
+function applyTitleSize(size) {
+  let fontJP = 22;
+  let fontEN = 16;
+
+  if (size >= 260) { fontJP=22; fontEN=16 }
+  else if (size >= 230){ fontJP=20; fontEN=15 }
+  else if (size >= 200){ fontJP=18; fontEN=14 }
+  else if (size >= 160){ fontJP=15; fontEN=12 }
+  else { fontJP=13; fontEN=11 }
+
+  document.querySelectorAll(".work-title").forEach(t => {
+    const jp = t.querySelector("span");
+    const en = t.querySelector("dt");
+
+    if (jp) jp.style.fontSize = fontJP + "px";
+    if (en) en.style.fontSize = fontEN + "px";
+  });
+}
+
+/* ★ レイアウト処理 ★ */
+function layoutItems(sorted) {
+  const size = getItemSize();
+
+  items.forEach(el => {
+    el.style.width = size + "px";
+    el.style.height = size + "px";
+  });
+
+  applyTitleSize(size);
+
+  const colCount = Math.max(
+    1, Math.floor((window.innerWidth - 20) / (size + gap))
+  );
+
+  const totalWidth = colCount * size + (colCount - 1) * gap;
+  const startX = (window.innerWidth - totalWidth) / 2;
+
+  let maxBottom = 0;
+
+  sorted.forEach((el, i) => {
+    const col = i % colCount;
+    const row = Math.floor(i / colCount);
+    const x = startX + col * (size + gap);
+    const y = 100 + row * (size + gap); /* ← 上を 140→80 に縮めた！ */
+
+    el.style.transition =
+      "left 0.8s cubic-bezier(0.22,1,0.36,1), top 0.8s cubic-bezier(0.22,1,0.36,1)";
+
+    el.style.left = x + "px";
+    el.style.top = y + "px";
+
+    maxBottom = Math.max(maxBottom, y + size);
+  });
+
+  wrapper.style.height = maxBottom + 10 + "px";
+}
+
+/* 初期ランダム配置 → 整列 */
+function init() {
+  const shuffled = [...items].sort(() => Math.random() - 0.5);
+
+  shuffled.forEach(el => {
+    el.style.left = Math.random() * 200 + "px";
+    el.style.top  = Math.random() * 150 + "px";
+  });
+
+  setTimeout(() => layoutItems(shuffled), 200);
+}
+
+init();
+
+/* Sort メニュー処理 */
+const menuButton = document.querySelector(".sort-menu-button");
+const menuBox = document.querySelector(".sort-menu");
+
+menuButton.onclick = () => {
+  menuBox.style.display =
+    menuBox.style.display === "flex" ? "none" : "flex";
+};
+
+document.querySelectorAll(".sort-menu div").forEach(btn => {
+  btn.onclick = () => {
+    menuBox.style.display = "none";
+    const type = btn.dataset.sort;
+
+    let sorted = [...items];
+
+    if (type === "asc")
+      sorted.sort((a, b) => Number(a.dataset.year) - Number(b.dataset.year));
+    if (type === "desc")
+      sorted.sort((a, b) => Number(b.dataset.year) - Number(a.dataset.year));
+    if (type === "random")
+      sorted.sort(() => Math.random() - 0.5);
+
+    layoutItems(sorted);
+  };
+});
+
+/* リサイズ時の再レイアウト */
+window.addEventListener("resize", () => layoutItems(items));
+</script>
+
+</body>
+</html>
